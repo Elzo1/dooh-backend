@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: dooh-signage
+
+  datasource:
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/dooh_signage?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:tico100}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2GB
+      max-request-size: 2GB
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: ${SHOW_SQL:true}
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: ${PORT:8080}
+  tomcat:
+    max-swallow-size: 2GB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:9a6Zp4rU7mK2vX5y8zA1bC4dE7fG0hI3jK6mL9nP2qR5sT8uV1wX4y7z2C5e8r1t}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+    refresh-expiration-ms: ${JWT_REFRESH_EXPIRATION_MS:604800000}
+
+  upload:
+    local-dir: ${UPLOAD_DIR:uploads}
